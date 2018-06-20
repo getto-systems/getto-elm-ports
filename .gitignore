@@ -1,2 +1,4 @@
 /tools/
 /node_modules/
+/elm-stuff/
+/tests/elm-stuff/
