@@ -1,0 +1,26 @@
+{
+  "name": "getto-elm",
+  "version": "0.0.0",
+  "description": "basic structure with elm",
+  "scripts": {
+    "build": "./bin/build.sh",
+    "elm-install": "elm-install",
+    "test": "elm-test"
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/getto-systems/getto-elm.git"
+  },
+  "author": "shun@getto.systems",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/getto-systems/getto-elm/issues"
+  },
+  "homepage": "https://github.com/getto-systems/getto-elm",
+  "devDependencies": {
+    "elm": "^0.18.0",
+    "elm-github-install": "^1.6.1",
+    "elm-test": "^0.18.12"
+  }
+}
