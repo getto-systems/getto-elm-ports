@@ -1,0 +1,23 @@
+{
+    "version": "0.0.0",
+    "summary": "basic structure with elm",
+    "repository": "https://github.com/getto-systems/getto-elm.git",
+    "license": "MIT",
+    "source-directories": [
+        "src"
+    ],
+    "exposed-modules": [],
+    "dependencies": {
+        "elm-community/json-extra": "2.7.0 <= v < 2.7.1",
+        "elm-community/list-extra": "7.1.0 <= v < 7.1.1",
+        "elm-lang/core": "5.1.1 <= v < 5.1.2",
+        "elm-lang/dom": "1.1.1 <= v < 1.1.2",
+        "elm-lang/html": "2.0.0 <= v < 2.0.1",
+        "elm-lang/http": "1.0.0 <= v < 1.0.1",
+        "evancz/focus": "2.0.2 <= v < 2.0.3",
+        "justinmimbs/elm-date-extra": "2.0.3 <= v < 2.0.4",
+        "simonh1000/file-reader": "1.6.0 <= v < 1.6.1",
+        "truqu/elm-base64": "2.0.1 <= v < 2.0.2"
+    },
+    "elm-version": "0.18.0 <= v < 0.19.0"
+}
