@@ -1,3 +1,7 @@
+# Version : 0.0.4
+
+add: js
+
 # Version : 0.0.3
 
 fix: expose modules
