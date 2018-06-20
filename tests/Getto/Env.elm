@@ -5,7 +5,7 @@ module Getto.Env exposing
   , renewPath
   )
 
-apiHost = "//192.168.0.109:21181/"
+apiHost = "//localhost/"
 pageRoot = "/"
 
 loginPath = "auth/sign/signin.html"
