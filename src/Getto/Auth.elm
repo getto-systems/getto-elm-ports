@@ -8,6 +8,7 @@ module Getto.Auth exposing
 import Getto
 import Getto.Storage as Storage
 import Getto.Location as Location
+import Getto.Config as Config
 import Getto.Env as Env
 import Getto.Moment as Moment
 import Getto.Json as Json
@@ -201,8 +202,8 @@ loginPath : Getto.Credential -> String
 loginPath credential =
   String.append Env.pageRoot <|
     if credential.oldToken == Nothing
-      then Env.loginPath
-      else Env.renewPath
+      then Config.loginPath
+      else Config.renewPath
 
 previousPath : Getto.Credential -> String
 previousPath = .previous >> Maybe.withDefault Env.pageRoot
