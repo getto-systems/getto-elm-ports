@@ -1,3 +1,7 @@
+# Version : 0.0.5
+
+fix: separate Config
+
 # Version : 0.0.4
 
 add: js
