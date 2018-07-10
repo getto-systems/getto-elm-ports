@@ -23,7 +23,7 @@ window.GettoDom = function(){
               if(focusElement) {
                 focusElement.focus();
               }
-            });
+            },100);
           }
         }
       }
