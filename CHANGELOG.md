@@ -1,3 +1,7 @@
+# Version : 0.0.6
+
+fix: delay #dom
+
 # Version : 0.0.5
 
 fix: separate Config
