@@ -1,3 +1,7 @@
+# Version : 0.0.7
+
+fix: dist
+
 # Version : 0.0.6
 
 fix: delay #dom
