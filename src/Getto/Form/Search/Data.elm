@@ -86,7 +86,6 @@ type Style
   | Bottom
   | NoWrap
   | PreWrap
-  | Fill
 
 type FormCell model row msg sub
   = FormCell String (List String) BorderSpec
@@ -534,7 +533,6 @@ toStyleClass style =
     Bottom  -> "is-bottom"
     NoWrap  -> "text-no-wrap"
     PreWrap -> "text-pre-wrap"
-    Fill    -> "is-fill"
 
 toBorderClass : String -> Border -> String
 toBorderClass prefix border =
