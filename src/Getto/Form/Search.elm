@@ -156,8 +156,8 @@ new href = always <|
     , "link.create" |> I18n.t |> H.text
     ]
 
-p : String -> Form.Content model msg
-p content = always <| H.p [] [ content |> H.text ]
+p : String -> Html msg
+p content = H.p [] [ content |> H.text ]
 
 editLink : String -> Html msg
 editLink href =
