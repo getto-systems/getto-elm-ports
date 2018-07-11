@@ -9,7 +9,6 @@ module Getto.Form.Search.Style exposing
   , bottom
   , nowrap
   , prewrap
-  , fill
   )
 
 import Getto.Form.Search.Data as Data
@@ -45,6 +44,3 @@ nowrap = style [ Data.NoWrap ]
 
 prewrap : a -> Styled a
 prewrap = style [ Data.PreWrap ]
-
-fill : a -> Styled a
-fill = style [ Data.Fill ]
