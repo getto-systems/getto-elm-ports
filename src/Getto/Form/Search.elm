@@ -6,10 +6,11 @@ port module Getto.Form.Search exposing
   , update
   , form
   , new
-  , edit
-  , dialog
-  , delete
-  , download
+  , p
+  , editLink
+  , editButton
+  , deleteButton
+  , downloadLink
   , textBox
   , textBoxBetween
   , dateBox
@@ -155,24 +156,27 @@ new href = always <|
     , "link.create" |> I18n.t |> H.text
     ]
 
-edit : String -> Html msg
-edit href =
+p : String -> Form.Content model msg
+p content = always <| H.p [] [ content |> H.text ]
+
+editLink : String -> Html msg
+editLink href =
   H.a [ A.href href ]
     [ Fa.solid "edit" []
     , H.text " "
     , "link.edit" |> I18n.t |> H.text
     ]
 
-dialog : (model -> msg) -> Form.Content model msg
-dialog msg model =
+editButton : (model -> msg) -> Form.Content model msg
+editButton msg model =
   H.button [ A.class "is-edit", E.onClick (msg model) ] [ Fa.solid "pencil-alt" [] ]
 
-delete : (model -> msg) -> Form.Content model msg
-delete msg model =
+deleteButton : (model -> msg) -> Form.Content model msg
+deleteButton msg model =
   H.button [ A.class "is-delete", E.onClick (msg model) ] [ Fa.solid "times" [] ]
 
-download : String -> Html msg
-download href =
+downloadLink : String -> Html msg
+downloadLink href =
   H.a [ A.href <| href ]
     [ Fa.solid "file" []
     , H.text " "
