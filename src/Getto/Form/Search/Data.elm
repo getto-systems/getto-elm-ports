@@ -50,7 +50,7 @@ type Head msg
   = Head      BorderSpec String (Styled msg)
   | GroupHead BorderSpec (Styled msg) (List (Head msg))
   | UnionHead BorderSpec (Styled msg) Int
-  | PartHead  BorderSpec (Styled msg)
+  | EmptyHead BorderSpec (Styled msg)
 
 type Prepend msg
   = Prepend BorderSpec (Styled msg) CellStyle
@@ -192,17 +192,15 @@ union prop toLength border ( head, column ) = Union
 
 parts
   : (model -> List part)
-  -> BorderSpec
-  ->
-    ( PartSpec part model msg
-    , PartSpec part row msg
-    , ( PartSpec part model msg, CellStyle )
-    )
+  -> (part -> row -> partRow)
+  -> List (Cell part partRow msg)
   -> Cell model row msg
-parts prop border ( head, column, (prepend,style) ) = Cells
-  ( \model      -> model |> prop |> List.map (\part -> PartHead border (head |> toPartHtml model part))
-  , \rows model -> model |> prop |> List.map (\part -> Column   border (column |> toPartColumnHtml rows part))
-  , \model      -> model |> prop |> List.map (\part -> Prepend  border (prepend |> toPartHtml model part) style)
+parts prop toRow cells = Cells
+  ( \model      -> model |> prop |> List.concatMap (\part -> cells |> List.concatMap (cellHeads part))
+  , \rows model -> model |> prop |> List.concatMap (\part -> cells |> List.concatMap
+      (cellColumns (rows |> List.map (toRow part)) part)
+    )
+  , \model      -> model |> prop |> List.concatMap (\part -> cells |> List.concatMap (cellPrepends part))
   )
 
 rows : (row -> List part) -> List (Cell model part msg) -> Cell model row msg
@@ -225,7 +223,7 @@ rows prop cells = Rows
 
 
 emptyHead : BorderSpec -> Head msg
-emptyHead border = PartHead border ([],[])
+emptyHead border = EmptyHead border ([],[])
 
 emptyPrepend : BorderSpec -> Prepend msg
 emptyPrepend border = Prepend border ([],[]) TD
@@ -265,20 +263,17 @@ toSwapHtml button model =
   |> Edit.swap model
   |> toHtml model
 
-toPartHtml : model -> data -> PartSpec data model msg -> Styled msg
-toPartHtml model data (contents, style) =
-  ( contents |> List.map (\content -> model |> content data)
-  , style
-  )
-
 toUnionColumnHtml : List row -> (row -> List part) -> PartSpec part row msg -> List (List (Styled msg))
 toUnionColumnHtml rows prop spec = rows |> List.map
   (\row ->
-    row |> prop |> List.map (\part -> spec |> toPartHtml row part)
+    row |> prop |> List.map (\part -> spec |> toUnionHtml row part)
   )
 
-toPartColumnHtml : List row -> part -> PartSpec part row msg -> List (Styled msg)
-toPartColumnHtml rows data spec = rows |> List.map (\row -> spec |> toPartHtml row data)
+toUnionHtml : model -> data -> PartSpec data model msg -> Styled msg
+toUnionHtml model data (contents, style) =
+  ( contents |> List.map (\content -> model |> content data)
+  , style
+  )
 
 
 cellHeads : model -> Cell model row msg -> List (Head msg)
@@ -369,7 +364,7 @@ toHeadRows msg sort (heads,rowspan) =
                   |> H.th (attr style border colspan rowspan)
                 ] :: []
 
-          PartHead border (contents, style) ->
+          EmptyHead border (contents, style) ->
             [ contents
               |> H.th (attr style border 1 rowspan)
             ] :: []
