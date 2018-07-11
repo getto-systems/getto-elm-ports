@@ -1,3 +1,7 @@
+# Version : 0.0.8
+
+fix: Search utility
+
 # Version : 0.0.7
 
 fix: dist
