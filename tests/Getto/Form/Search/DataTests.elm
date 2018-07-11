@@ -57,17 +57,6 @@ unionModel =
     ]
   }
 
-partsModel =
-  { data =
-    { parts = ["a","b","c"]
-    }
-  , rows =
-    [ { a = "a1" }
-    , { a = "a2" }
-    , { a = "a3" }
-    ]
-  }
-
 data model = ( model, model.rows )
 
 suite : Test
@@ -479,57 +468,6 @@ suite = describe "pager"
                   , H.td [ A.class "", A.colspan 1, A.rowspan 1 ] []
                   , H.td [ A.class "", A.colspan 1, A.rowspan 1 ] []
                   , H.td [ A.class "", A.colspan 1, A.rowspan 1 ] []
-                  ]
-                ]
-              ]
-            ]
-          )
-
-  , test "parts" <|
-    \_ ->
-      let
-        cells =
-          [ Data.cell "a" Border.none
-            ( Style.none [ "head A" |> Form.text ]
-            , Style.none [ .a >> H.text ]
-            , Prepend.none
-            )
-          , Data.parts (.data >> .parts) Border.none
-            ( Style.none [ String.append "part: " >> Form.text ]
-            , Style.none [ (\part row -> String.append row.a part |> H.text) ]
-            , Prepend.none
-            )
-          ]
-      in
-        (emptySort, data partsModel) |> Data.table Sort cells |> Expect.equal
-          (H.div []
-            [ H.table [ A.attribute "_fixedhead" "div-auto-size: none; rows: 1" ]
-              [ H.thead []
-                [ H.tr []
-                  [ H.th [ A.class "", A.colspan 1, A.rowspan 1 ] [ H.text "head A" ]
-                  , H.th [ A.class "", A.colspan 1, A.rowspan 1 ] [ H.text "part: a" ]
-                  , H.th [ A.class "", A.colspan 1, A.rowspan 1 ] [ H.text "part: b" ]
-                  , H.th [ A.class "", A.colspan 1, A.rowspan 1 ] [ H.text "part: c" ]
-                  ]
-                ]
-              , H.tbody []
-                [ H.tr []
-                  [ H.td [ A.class "", A.colspan 1, A.rowspan 1 ] [ H.text "a1" ]
-                  , H.td [ A.class "", A.colspan 1, A.rowspan 1 ] [ H.text "a1a" ]
-                  , H.td [ A.class "", A.colspan 1, A.rowspan 1 ] [ H.text "a1b" ]
-                  , H.td [ A.class "", A.colspan 1, A.rowspan 1 ] [ H.text "a1c" ]
-                  ]
-                , H.tr []
-                  [ H.td [ A.class "", A.colspan 1, A.rowspan 1 ] [ H.text "a2" ]
-                  , H.td [ A.class "", A.colspan 1, A.rowspan 1 ] [ H.text "a2a" ]
-                  , H.td [ A.class "", A.colspan 1, A.rowspan 1 ] [ H.text "a2b" ]
-                  , H.td [ A.class "", A.colspan 1, A.rowspan 1 ] [ H.text "a2c" ]
-                  ]
-                , H.tr []
-                  [ H.td [ A.class "", A.colspan 1, A.rowspan 1 ] [ H.text "a3" ]
-                  , H.td [ A.class "", A.colspan 1, A.rowspan 1 ] [ H.text "a3a" ]
-                  , H.td [ A.class "", A.colspan 1, A.rowspan 1 ] [ H.text "a3b" ]
-                  , H.td [ A.class "", A.colspan 1, A.rowspan 1 ] [ H.text "a3c" ]
                   ]
                 ]
               ]
