@@ -1,3 +1,7 @@
+# Version : 0.0.10
+
+fix: parts #Search.Data
+
 # Version : 0.0.9
 
 fix: Search utility
