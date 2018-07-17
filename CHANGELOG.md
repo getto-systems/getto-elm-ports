@@ -1,3 +1,7 @@
+# Version : 0.0.11
+
+fix: set empty array when clear credential #Auth
+
 # Version : 0.0.10
 
 fix: parts #Search.Data
