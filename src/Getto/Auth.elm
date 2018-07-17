@@ -172,7 +172,7 @@ authenticated result credential =
 clear : Getto.Credential -> Getto.Credential
 clear credential =
   { credential
-  | role = [""]
+  | role = []
   , loginID = ""
   , token = Nothing
   , oldToken = Nothing
