@@ -1,3 +1,7 @@
+# Version : 0.0.12
+
+fix: onInput -> on 'change' #Form.Edit
+
 # Version : 0.0.11
 
 fix: set empty array when clear credential #Auth
