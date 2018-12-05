@@ -65,6 +65,7 @@ import Html.Events as E
 
 import Http
 import Dict
+import Json.Decode as Decode
 
 import FileReader
 
@@ -354,7 +355,7 @@ textInput type_ class msg name model =
     [ A.type_ type_
     , A.class (class |> String.join " ")
     , A.value (model |> Field.get name)
-    , E.onInput (Field.Set >> msg name)
+    , E.on "change" (Decode.map (Field.Set >> msg name) E.targetValue)
     ] []
 
 fileBox : Modify msg -> String -> Content a msg
@@ -369,7 +370,7 @@ textarea msg name model =
   H.textarea
     [ A.rows 8
     , A.class "is-large"
-    , E.onInput (Field.Set >> msg name)
+    , E.on "change" (Decode.map (Field.Set >> msg name) E.targetValue)
     ]
     [ model |> Field.get name |> H.text ]
 
