@@ -1,3 +1,7 @@
+# Version : 0.0.14
+
+fix: table -> dataTable
+
 # Version : 0.0.13
 
 add: table #Search
