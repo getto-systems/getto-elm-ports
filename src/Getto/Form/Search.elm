@@ -22,6 +22,7 @@ port module Getto.Form.Search exposing
   , select
   , options
   , data
+  , table
   , loading
   )
 
@@ -312,6 +313,12 @@ data (page,sort) cells model =
               , data
               , paging
               ]
+
+table : ( Int -> msg, String -> msg ) -> List (Data.Cell (Response data row) row msg) -> Form.Content (Model data row a) msg
+table (page,sort) cells model =
+  case model.response of
+    Nothing -> H.text ""
+    Just response -> (model.fields.sort, (response, response.rows) ) |> Data.table sort cells
 
 loading : Form.Content (Model data row a) msg -> Form.Content (Model data row a) msg
 loading contents model =
