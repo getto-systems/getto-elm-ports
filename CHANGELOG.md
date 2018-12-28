@@ -1,3 +1,7 @@
+# Version : 0.0.13
+
+add: table #Search
+
 # Version : 0.0.12
 
 fix: onInput -> on 'change' #Form.Edit
