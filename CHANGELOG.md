@@ -1,3 +1,7 @@
+# Version : 0.0.15
+
+fix: select onChange
+
 # Version : 0.0.14
 
 fix: table -> dataTable
