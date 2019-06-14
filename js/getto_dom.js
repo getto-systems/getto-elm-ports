@@ -7,7 +7,7 @@ window.GettoDom = function(){
         if(!element) {
           return null;
         }
-        if(element.matches(selector)) {
+        if(element.matches && element.matches(selector)) {
           return element;
         }
         return getParentElement(element.parentElement,selector);

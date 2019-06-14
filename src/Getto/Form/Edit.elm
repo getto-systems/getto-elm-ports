@@ -487,7 +487,7 @@ select msg values name model =
           ]
           [ H.text label ]
       )
-    |> H.select [ E.onInput (Field.Set >> msg name) ]
+    |> H.select [ E.on "change" (E.targetValue |> Decode.map (Field.Set >> msg name)) ]
 
 
 options : (value -> String) -> List value -> List ( value, String )
